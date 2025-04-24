@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 2px solid black;
+  background-color: $white;
+  box-shadow: 2px 2px 0 $primary-black;
+  transition: transform 0.2s;
+  
+  &:hover {
+    background-color: $gray-100;
+    transform: translateY(-0.25rem);
+  }
+}

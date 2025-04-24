@@ -1,0 +1,56 @@
+@import '../../styles/variables';
+
+.project-card {
+  height: 100%;
+  
+  .project-image {
+    margin-bottom: $spacing-4;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    border: 2px solid black;
+    
+    img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+    }
+  }
+  
+  h3 {
+    font-size: $text-xl;
+    font-weight: bold;
+    margin-bottom: $spacing-2;
+  }
+  
+  .project-description {
+    color: $gray-700;
+    margin-bottom: $spacing-4;
+    flex-grow: 1;
+  }
+  
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+    margin-bottom: $spacing-4;
+    
+    .tag {
+      display: inline-block;
+      padding: $spacing-1 $spacing-2;
+      font-size: $text-sm;
+      background-color: $yellow-100;
+      border: 1px solid black;
+      border-radius: 0.25rem;
+    }
+  }
+  
+  .view-project {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    
+    span {
+      margin-right: $spacing-2;
+    }
+  }
+}

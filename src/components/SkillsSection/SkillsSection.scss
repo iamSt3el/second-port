@@ -1,0 +1,175 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.skills-section {
+  h2#skills-title {
+    position: relative;
+    display: inline-block;
+    font-size: $text-3xl;
+    font-weight: bold;
+    margin-bottom: $spacing-10;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 100%;
+      height: 0.5rem;
+      background-color: $blue-300;
+      z-index: -1;
+      transform: rotate(-1deg) skew(-10deg);
+    }
+  }
+  
+  .skills-doodle-wrapper {
+    position: relative;
+    padding: $spacing-4;
+    overflow: hidden;
+  }
+  
+  .doodle-circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+    .doodle-circle {
+      position: absolute;
+      border: 3px dashed black;
+      border-radius: 50%;
+      opacity: 0.15;
+      
+      &:nth-child(1) {
+        width: 200px;
+        height: 200px;
+        top: 10%;
+        left: -100px;
+        animation: spin 30s linear infinite;
+      }
+      
+      &:nth-child(2) {
+        width: 300px;
+        height: 300px;
+        top: 60%;
+        right: -150px;
+        animation: spin 40s linear infinite reverse;
+      }
+      
+      &:nth-child(3) {
+        width: 150px;
+        height: 150px;
+        bottom: 5%;
+        left: 30%;
+        animation: spin 20s linear infinite;
+      }
+    }
+  }
+  
+  .skill-categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-8;
+    
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .skill-category {
+      height: 100%;
+      
+      .skill-category-border {
+        height: 100%;
+        transform: rotate(0deg);
+        
+        @media (min-width: $breakpoint-lg) {
+          &:hover {
+            transform: translateY(-5px) rotate(-1deg);
+            transition: transform 0.3s ease;
+          }
+        }
+      }
+      
+      .category-title {
+        text-align: center;
+        margin-bottom: $spacing-6;
+        font-size: $text-xl;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+        
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -8px;
+          width: 100%;
+          height: 3px;
+          background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1H0V0h5z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+      }
+      
+      .skills-list {
+        margin-top: $spacing-4;
+      }
+    }
+  }
+  
+  .skill-doodles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    
+    .floating-icon {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: white;
+      border: 2px solid black;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+      
+      &.icon-1 {
+        top: 15%;
+        left: 10%;
+        animation: float 8s ease-in-out infinite, spin 20s linear infinite;
+      }
+      
+      &.icon-2 {
+        top: 65%;
+        right: 8%;
+        animation: float 10s ease-in-out infinite reverse, spin 25s linear infinite reverse;
+      }
+      
+      &.icon-3 {
+        bottom: 15%;
+        left: 15%;
+        animation: float 7s ease-in-out infinite 1s, spin 30s linear infinite;
+      }
+      
+      &.icon-4 {
+        top: 30%;
+        right: 15%;
+        animation: float 9s ease-in-out infinite 0.5s, spin 22s linear infinite reverse;
+      }
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}

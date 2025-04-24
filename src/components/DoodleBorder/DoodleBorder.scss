@@ -1,0 +1,56 @@
+@import '../../styles/variables';
+
+.doodle-border {
+  position: relative;
+  border: 4px solid black;
+  border-radius: 0.5rem;
+  padding: $spacing-6;
+  background-color: $white;
+  box-shadow: 8px 8px 0 $primary-black;
+  transform: rotate(-1deg);
+
+  .corner-dot {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    border: 2px solid black;
+
+    &.top-left {
+      top: -0.75rem;
+      left: -0.75rem;
+      background-color: $yellow-300;
+    }
+
+    &.bottom-right {
+      bottom: -0.75rem;
+      right: -0.75rem;
+      background-color: $blue-300;
+    }
+
+    &.top-right {
+      top: -0.75rem;
+      right: -0.75rem;
+      background-color: $pink-300;
+    }
+
+    &.bottom-left {
+      bottom: -0.75rem;
+      left: -0.75rem;
+      background-color: $green-300;
+    }
+  }
+
+  &.achievement {
+    background-color: $blue-50;
+  }
+  
+  // Add styles for text content inside doodle border
+  p {
+    margin-bottom: $spacing-4;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

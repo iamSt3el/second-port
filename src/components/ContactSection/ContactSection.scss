@@ -1,0 +1,247 @@
+@import '../../styles/variables';
+
+.contact-section {
+  position: relative;
+  overflow: visible; // Changed from hidden to visible so dots aren't cut off
+  
+  h2#contact-title {
+    position: relative;
+    display: inline-block;
+    font-size: $text-3xl;
+    font-weight: bold;
+    margin-bottom: $spacing-10;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 100%;
+      height: 0.5rem;
+      background-color: $pink-300;
+      z-index: -1;
+      transform: rotate(-1deg) skew(-10deg);
+    }
+  }
+  
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-8;
+    position: relative;
+    z-index: 1;
+    padding: 12px; // Added small padding to ensure dots are visible
+    
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: 1fr 1.5fr;
+    }
+    
+    .contact-info {
+      position: relative; // Added to position the dots
+      
+      // Added yellow dot to top-left
+      &:before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: 20px;
+        height: 20px;
+        background-color: $yellow-300;
+        border: 2px solid black;
+        border-radius: 50%;
+        z-index: 2;
+      }
+      
+      // Added pink dot to top-right
+      &:after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 20px;
+        height: 20px;
+        background-color: $pink-300;
+        border: 2px solid black;
+        border-radius: 50%;
+        z-index: 2;
+      }
+      
+      .contact-info-card {
+        height: 100%;
+        background-color: $gray-50;
+        position: relative; // Added to position the dots
+        border: 2px solid black; // Added border to match design
+        border-radius: 1rem; // Added radius to match design
+        padding: $spacing-6; // Added padding
+        
+        // Added green dot to bottom-left
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: -10px;
+          width: 20px;
+          height: 20px;
+          background-color: $green-300;
+          border: 2px solid black;
+          border-radius: 50%;
+          z-index: 2;
+        }
+        
+        // Added blue dot to bottom-right
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          right: -10px;
+          width: 20px;
+          height: 20px;
+          background-color: $blue-300;
+          border: 2px solid black;
+          border-radius: 50%;
+          z-index: 2;
+        }
+        
+        .contact-info-title {
+          font-size: $text-xl;
+          font-weight: bold;
+          margin-bottom: $spacing-4;
+          position: relative;
+          display: inline-block;
+          
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 0.25rem;
+            background-color: $yellow-300;
+          }
+        }
+        
+        .contact-info-description {
+          margin-bottom: $spacing-6;
+          color: $gray-700;
+          line-height: 1.6;
+        }
+        
+        .contact-info-items {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: $spacing-4;
+          
+          @media (min-width: $breakpoint-sm) {
+            grid-template-columns: 1fr 1fr;
+          }
+          
+          .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            
+            .contact-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 42px;
+              height: 42px;
+              background-color: white;
+              border: 2px solid black;
+              border-radius: 50%;
+              margin-right: $spacing-3;
+              box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+            }
+            
+            .contact-details {
+              .contact-item-title {
+                font-weight: 600;
+                margin-bottom: $spacing-1;
+              }
+              
+              .contact-item-content {
+                color: $gray-600;
+              }
+            }
+          }
+        }
+        
+        .contact-social-doodle {
+          position: relative;
+          margin-top: $spacing-8;
+          padding-top: $spacing-6;
+          text-align: center;
+          
+          .doodle-arrow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 30px;
+            background-image: url("data:image/svg+xml,%3Csvg width='50' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5,5 C20,5 30,25 45,5 M25,5 L45,5 L45,25' stroke='black' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+          }
+          
+          .doodle-text {
+            font-size: $text-lg;
+            font-weight: 600;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            transform: rotate(-2deg);
+          }
+        }
+      }
+    }
+  }
+  
+  .contact-background-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    
+    .doodle-element {
+      position: absolute;
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      
+      &.element-1 {
+        top: 10%;
+        left: 5%;
+        width: 100px;
+        height: 100px;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' stroke='black' stroke-width='2' fill='none' stroke-dasharray='5,5' /%3E%3C/svg%3E");
+        animation: spin 30s linear infinite;
+      }
+      
+      &.element-2 {
+        top: 20%;
+        right: 10%;
+        width: 80px;
+        height: 80px;
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,40 L70,40 M40,10 L40,70' stroke='black' stroke-width='2' /%3E%3C/svg%3E");
+        animation: float 15s ease-in-out infinite;
+      }
+      
+      &.element-3 {
+        bottom: 15%;
+        left: 15%;
+        width: 120px;
+        height: 60px;
+        background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,30 Q30,5 60,30 T110,30' stroke='black' fill='none' stroke-width='2' /%3E%3C/svg%3E");
+        animation: float 10s ease-in-out infinite reverse;
+      }
+      
+      &.element-4 {
+        bottom: 10%;
+        right: 5%;
+        width: 100px;
+        height: 100px;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,20 L80,80 M20,80 L80,20' stroke='black' stroke-width='2' /%3E%3C/svg%3E");
+        animation: spin 20s linear infinite reverse;
+      }
+    }
+  }
+}

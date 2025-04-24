@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.fade-in-section {
+  opacity: 0;
+  transition: opacity 1s;
+  
+  &.is-visible {
+    opacity: 1;
+  }
+}

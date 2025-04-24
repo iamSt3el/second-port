@@ -1,0 +1,37 @@
+@import '../../styles/variables';
+
+.achievement-card {
+  height: 100%;
+  
+  .achievement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-2;
+    
+    h3 {
+      font-size: $text-lg;
+      font-weight: bold;
+      margin: 0;
+    }
+    
+    .achievement-date {
+      font-size: $text-sm;
+      background-color: $blue-100;
+      padding: $spacing-1 $spacing-2;
+      border-radius: 0.25rem;
+      border: 1px solid black;
+    }
+  }
+  
+  .achievement-issuer {
+    font-size: $text-sm;
+    font-weight: 500;
+    color: $gray-700;
+    margin-bottom: $spacing-2;
+  }
+  
+  .achievement-description {
+    color: $gray-600;
+  }
+}

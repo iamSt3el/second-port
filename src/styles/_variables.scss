@@ -1,0 +1,49 @@
+// Colors
+$primary-black: rgba(0, 0, 0, 0.9);
+$white: #ffffff;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$blue-50: #eff6ff;
+$blue-100: #dbeafe;
+$blue-300: #93c5fd;
+$blue-600: #2563eb;
+$yellow-100: #fef9c3;
+$yellow-300: #fde047;
+$pink-300: #f9a8d4;
+$green-300: #86efac;
+
+// Patterns
+$dot-pattern: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E");
+$doodle-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M30,20 Q40,5 50,20 T70,20' fill='none' stroke='%23000' stroke-width='2'/%3E%3Ccircle cx='25' cy='70' r='10' fill='none' stroke='%23000' stroke-width='2'/%3E%3Cpath d='M60,80 L80,60 L60,40' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+// Font sizes
+$text-sm: 0.875rem;
+$text-base: 1rem;
+$text-lg: 1.125rem;
+$text-xl: 1.25rem;
+$text-2xl: 1.5rem;
+$text-3xl: 1.875rem;
+
+// Spacing
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-5: 1.25rem;
+$spacing-6: 1.5rem;
+$spacing-8: 2rem;
+$spacing-10: 2.5rem;
+$spacing-12: 3rem;
+$spacing-16: 4rem;
+$spacing-20: 5rem;
+
+// Container sizes
+$container-max-width: 72rem; // max-w-6xl
