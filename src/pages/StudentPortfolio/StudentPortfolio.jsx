@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Instagram, Mail, Download } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail, Download, Menu, X } from 'lucide-react';
 
 // Import components
 import DoodleBorder from '../../components/DoodleBorder/DoodleBorder';
@@ -12,12 +12,15 @@ import AchievementCard from '../../components/AchievementCard/AchievementCard';
 import SkillsSection from '../../components/SkillsSection/SkillsSection';
 import ContactSection from '../../components/ContactSection/ContactSection';
 
+import ProfileImage from '../../assets/image.jpeg';
+
 // Import styles
 import './StudentPortfolio.scss';
 
 const StudentPortfolio = () => {
   const [activeSection, setActiveSection] = useState('about');
   const [animateDoodle, setAnimateDoodle] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Trigger doodle animation when component mounts
@@ -59,6 +62,7 @@ const StudentPortfolio = () => {
       });
     }
     setActiveSection(sectionId);
+    setMobileMenuOpen(false);
   };
 
   const projects = [
@@ -128,7 +132,16 @@ const StudentPortfolio = () => {
             <h1>Jane Student</h1>
           </div>
           
-          <nav>
+          {/* Mobile menu toggle */}
+          <button 
+            className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            <div className="bar"></div>
+          </button>
+          
+          <nav className={mobileMenuOpen ? 'mobile-open' : ''}>
             <NavItem active={activeSection === 'about'} onClick={() => scrollToSection('about')}>
               About Me
             </NavItem>
@@ -188,7 +201,7 @@ const StudentPortfolio = () => {
                 <div className="profile-image-wrapper">
                   <div className="rotating-circle"></div>
                   <div className="profile-image">
-                    <img src="/api/placeholder/400/400" alt="Jane Student" />
+                    <img src={ProfileImage} alt="Jane Student" />
                   </div>
                   <div className="decorative-dot top"></div>
                   <div className="decorative-dot bottom"></div>

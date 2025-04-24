@@ -31,9 +31,13 @@ const SkillBar = ({ name, level, icon: Icon, color = '#fde047' }) => {
   return (
     <div ref={barRef} className="skill-bar">
       <div className="skill-info">
-        {Icon && <Icon size={20} className="skill-icon" />}
-        <span className="skill-name">{name}</span>
-        <span className="skill-percentage">{level}%</span>
+        <div className="skill-icon-container">
+          {Icon && <Icon size={20} className="skill-icon" />}
+        </div>
+        <div className="skill-name-level">
+          <span className="skill-name">{name}</span>
+          <span className="skill-percentage">{level}%</span>
+        </div>
       </div>
       <div className="skill-bar-container">
         <div 
@@ -41,6 +45,26 @@ const SkillBar = ({ name, level, icon: Icon, color = '#fde047' }) => {
           style={{ width: `${level}%`, backgroundColor: color }}
         >
           <div className="skill-dots"></div>
+        </div>
+        
+        {/* Level markers */}
+        <div className="skill-markers">
+          <div className="skill-marker" style={{ left: '25%' }}>
+            <div className="marker-dot"></div>
+            <span className="marker-label">Basic</span>
+          </div>
+          <div className="skill-marker" style={{ left: '50%' }}>
+            <div className="marker-dot"></div>
+            <span className="marker-label">Intermediate</span>
+          </div>
+          <div className="skill-marker" style={{ left: '75%' }}>
+            <div className="marker-dot"></div>
+            <span className="marker-label">Advanced</span>
+          </div>
+          <div className="skill-marker" style={{ left: '95%' }}>
+            <div className="marker-dot"></div>
+            <span className="marker-label">Expert</span>
+          </div>
         </div>
       </div>
     </div>

@@ -2,44 +2,95 @@
 
 .skill-bar {
   margin-bottom: $spacing-6;
+  position: relative;
+  z-index: 5;
   
   .skill-info {
     display: flex;
     align-items: center;
     margin-bottom: $spacing-2;
     
-    .skill-icon {
+    .skill-icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: white;
+      border: 2px solid black;
       margin-right: $spacing-2;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+      
+      .skill-icon {
+        color: $primary-black;
+      }
     }
     
-    .skill-name {
+    .skill-name-level {
+      display: flex;
+      justify-content: space-between;
       flex-grow: 1;
-      font-weight: 600;
-      font-size: $text-lg;
-    }
-    
-    .skill-percentage {
-      font-weight: 500;
-      color: $gray-600;
-      margin-left: $spacing-2;
+      
+      .skill-name {
+        flex-grow: 1;
+        font-weight: 600;
+        font-size: $text-lg;
+        position: relative;
+        padding-bottom: 3px;
+        
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 40px;
+          height: 3px;
+          background-color: $gray-600;
+          opacity: 0.2;
+        }
+      }
+      
+      .skill-percentage {
+        font-weight: 600;
+        color: $gray-600;
+        margin-left: $spacing-2;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        font-size: $text-base;
+        transform: rotate(-5deg);
+        display: inline-block;
+        background-color: $yellow-100;
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid black;
+      }
     }
   }
   
   .skill-bar-container {
     position: relative;
-    height: 20px;
+    height: 24px;
     background-color: $gray-100;
-    border: 2px dashed black;
-    border-radius: 10px;
+    border: 2px solid black;
+    border-radius: 12px;
     overflow: hidden;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    // Dot pattern for background
+    background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 10px 10px;
     
     &:before {
       content: '';
       position: absolute;
-      top: -4px;
-      left: -4px;
-      width: 10px;
-      height: 10px;
+      top: -6px;
+      left: -6px;
+      width: 12px;
+      height: 12px;
       background-color: $pink-300;
       border: 2px solid black;
       border-radius: 50%;
@@ -49,10 +100,10 @@
     &:after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      right: -4px;
-      width: 10px;
-      height: 10px;
+      bottom: -6px;
+      right: -6px;
+      width: 12px;
+      height: 12px;
       background-color: $blue-300;
       border: 2px solid black;
       border-radius: 50%;
@@ -77,9 +128,58 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: radial-gradient(circle, rgba(0,0,0,0.1) 2px, transparent 2px);
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1,1 L9,9 M9,1 L1,9' stroke='rgba(0,0,0,0.2)' stroke-width='1'/%3E%3C/svg%3E");
       background-size: 10px 10px;
       animation: moveDotsRightToLeft 20s linear infinite;
+    }
+    
+    // Shine effect
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+      animation: shine 3s ease-in-out infinite;
+    }
+  }
+  
+  .skill-markers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    
+    .skill-marker {
+      position: absolute;
+      top: 100%;
+      transform: translateX(-50%);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      
+      .marker-dot {
+        width: 1px;
+        height: 6px;
+        background-color: rgba(0, 0, 0, 0.3);
+        margin: 0 auto 2px;
+      }
+      
+      .marker-label {
+        font-size: 8px;
+        color: $gray-600;
+        white-space: nowrap;
+      }
+    }
+  }
+  
+  &:hover {
+    .skill-markers .skill-marker {
+      opacity: 1;
     }
   }
 }
@@ -90,5 +190,14 @@
   }
   100% {
     background-position: -200px 0;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
   }
 }
