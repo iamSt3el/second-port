@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Instagram, Mail, Download, Menu, X } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail, Download } from 'lucide-react';
 
 // Import components
 import DoodleBorder from '../../components/DoodleBorder/DoodleBorder';
@@ -8,11 +8,11 @@ import NavItem from '../../components/NavItem/NavItem';
 import SocialIcon from '../../components/SocialIcon/SocialIcon';
 import FadeInSection from '../../components/FadeInSection/FadeInSection';
 import ProjectCard from '../../components/ProjectCard/ProjectCard';
-import AchievementCard from '../../components/AchievementCard/AchievementCard';
 import SkillsSection from '../../components/SkillsSection/SkillsSection';
+import EducationSection from '../../components/EducationSection/EducationSection';
+import CertificateSection from '../../components/CertificateSection/CertificateSection';
+import AchievementSection from '../../components/AchievementSection/AchievementSection';
 import ContactSection from '../../components/ContactSection/ContactSection';
-
-import ProfileImage from '../../assets/image.jpeg';
 
 // Import styles
 import './StudentPortfolio.scss';
@@ -32,7 +32,9 @@ const StudentPortfolio = () => {
       
       const aboutSection = document.getElementById('about');
       const skillsSection = document.getElementById('skills');
+      const educationSection = document.getElementById('education');
       const projectsSection = document.getElementById('projects');
+      const certificatesSection = document.getElementById('certificates');
       const achievementsSection = document.getElementById('achievements');
       const contactSection = document.getElementById('contact');
       
@@ -40,8 +42,12 @@ const StudentPortfolio = () => {
         setActiveSection('about');
       } else if (skillsSection && scrollPosition < skillsSection.offsetTop + skillsSection.offsetHeight) {
         setActiveSection('skills');
+      } else if (educationSection && scrollPosition < educationSection.offsetTop + educationSection.offsetHeight) {
+        setActiveSection('education');
       } else if (projectsSection && scrollPosition < projectsSection.offsetTop + projectsSection.offsetHeight) {
         setActiveSection('projects');
+      } else if (certificatesSection && scrollPosition < certificatesSection.offsetTop + certificatesSection.offsetHeight) {
+        setActiveSection('certificates');
       } else if (achievementsSection && scrollPosition < achievementsSection.offsetTop + achievementsSection.offsetHeight) {
         setActiveSection('achievements');
       } else if (contactSection) {
@@ -89,33 +95,6 @@ const StudentPortfolio = () => {
     }
   ];
 
-  const achievements = [
-    {
-      title: "Dean's List",
-      issuer: "University of Technology",
-      date: "2023-2024",
-      description: "Recognized for outstanding academic achievement with GPA above 3.8 for three consecutive semesters."
-    },
-    {
-      title: "Hackathon Winner",
-      issuer: "TechCrunch Disrupt",
-      date: "May 2023",
-      description: "First place in the annual coding competition for developing an innovative solution for elderly care."
-    },
-    {
-      title: "Research Publication",
-      issuer: "International Journal of Computer Science",
-      date: "January 2024",
-      description: "Co-authored a paper on efficient algorithms for natural language processing in resource-constrained environments."
-    },
-    {
-      title: "Leadership Award",
-      issuer: "Student Government Association",
-      date: "December 2023",
-      description: "Recognized for exceptional leadership as president of the Computer Science Club, organizing workshops and mentoring sessions."
-    }
-  ];
-
   return (
     <div className="student-portfolio">
       {/* Animated Doodles */}
@@ -148,8 +127,14 @@ const StudentPortfolio = () => {
             <NavItem active={activeSection === 'skills'} onClick={() => scrollToSection('skills')}>
               Skills
             </NavItem>
+            <NavItem active={activeSection === 'education'} onClick={() => scrollToSection('education')}>
+              Education
+            </NavItem>
             <NavItem active={activeSection === 'projects'} onClick={() => scrollToSection('projects')}>
               Projects
+            </NavItem>
+            <NavItem active={activeSection === 'certificates'} onClick={() => scrollToSection('certificates')}>
+              Certificates
             </NavItem>
             <NavItem active={activeSection === 'achievements'} onClick={() => scrollToSection('achievements')}>
               Achievements
@@ -201,7 +186,7 @@ const StudentPortfolio = () => {
                 <div className="profile-image-wrapper">
                   <div className="rotating-circle"></div>
                   <div className="profile-image">
-                    <img src={ProfileImage} alt="Jane Student" />
+                    <img src="/api/placeholder/400/400" alt="Jane Student" />
                   </div>
                   <div className="decorative-dot top"></div>
                   <div className="decorative-dot bottom"></div>
@@ -213,6 +198,9 @@ const StudentPortfolio = () => {
         
         {/* Skills Section */}
         <SkillsSection />
+        
+        {/* Education Section */}
+        <EducationSection />
         
         {/* Projects Section */}
         <section id="projects">
@@ -229,20 +217,11 @@ const StudentPortfolio = () => {
           </FadeInSection>
         </section>
         
+        {/* Certificates Section */}
+        <CertificateSection />
+        
         {/* Achievements Section */}
-        <section id="achievements">
-          <FadeInSection>
-            <h2 id="achievements-title">Certificates & Achievements</h2>
-            
-            <div className="achievements-grid">
-              {achievements.map((achievement, index) => (
-                <FadeInSection key={index} delay={index * 200}>
-                  <AchievementCard {...achievement} />
-                </FadeInSection>
-              ))}
-            </div>
-          </FadeInSection>
-        </section>
+        <AchievementSection />
         
         {/* Contact Section */}
         <ContactSection />

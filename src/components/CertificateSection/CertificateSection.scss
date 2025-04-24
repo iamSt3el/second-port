@@ -1,0 +1,251 @@
+@import '../../styles/variables';
+@import '../../styles/animations';
+
+.certificate-section {
+  position: relative;
+  
+  h2#certificates-title {
+    position: relative;
+    display: inline-block;
+    font-size: $text-3xl;
+    font-weight: bold;
+    margin-bottom: $spacing-10;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 100%;
+      height: 0.5rem;
+      background-color: $pink-300;
+      z-index: -1;
+      transform: rotate(-1deg) skew(-10deg);
+    }
+  }
+  
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-8;
+    position: relative;
+    
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .certificate-card {
+      height: 100%;
+      
+      .doodle-border {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-top: $spacing-10;
+        
+        .certificate-icon {
+          position: absolute;
+          top: -20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 60px;
+          background-color: $white;
+          border: 3px solid black;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+          box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+          
+          svg {
+            color: $primary-black;
+          }
+        }
+        
+        .certificate-title {
+          text-align: center;
+          font-size: $text-xl;
+          font-weight: 700;
+          margin-bottom: $spacing-4;
+        }
+        
+        .certificate-meta {
+          display: flex;
+          flex-direction: column;
+          gap: $spacing-2;
+          margin-bottom: $spacing-4;
+          
+          .certificate-issuer {
+            text-align: center;
+            font-weight: 500;
+            color: $gray-700;
+          }
+          
+          .certificate-date {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: $spacing-2;
+            font-size: $text-sm;
+            padding: $spacing-1 $spacing-3;
+            background-color: $blue-50;
+            border: 1px dashed black;
+            border-radius: 20px;
+            width: fit-content;
+            margin: 0 auto;
+            
+            svg {
+              min-width: 16px;
+              color: $gray-700;
+            }
+          }
+        }
+        
+        .certificate-description {
+          text-align: center;
+          color: $gray-600;
+          margin-bottom: $spacing-6;
+          flex-grow: 1;
+        }
+        
+        .certificate-actions {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: $spacing-2;
+          
+          .view-certificate-btn {
+            width: 100%;
+            background-color: $yellow-100;
+            
+            &:hover {
+              background-color: $yellow-300;
+            }
+          }
+          
+          .verify-link {
+            display: flex;
+            align-items: center;
+            gap: $spacing-1;
+            color: $blue-600;
+            font-size: $text-sm;
+            text-decoration: none;
+            
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .certificate-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    
+    .certificate-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .certificate-modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      z-index: 51;
+      animation: zoomIn 0.3s ease;
+      
+      img {
+        max-width: 100%;
+        max-height: 80vh;
+        border: 5px solid white;
+        border-radius: 5px;
+        display: block;
+      }
+      
+      .close-modal-btn {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: white;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+  
+  .certificate-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    
+    .decoration {
+      position: absolute;
+      opacity: 0.1;
+      
+      &.decoration-1 {
+        top: 10%;
+        right: 5%;
+        width: 150px;
+        height: 150px;
+        background-image: url("data:image/svg+xml,%3Csvg width='150' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='75' cy='75' r='60' fill='none' stroke='black' stroke-width='2' stroke-dasharray='10 5' /%3E%3Cpath d='M30,75 L120,75 M75,30 L75,120' stroke='black' stroke-width='2' stroke-dasharray='10 5' /%3E%3C/svg%3E");
+        animation: spin 40s linear infinite;
+      }
+      
+      &.decoration-2 {
+        bottom: 10%;
+        left: 5%;
+        width: 100px;
+        height: 100px;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,50 C20,20 80,20 80,50 C80,80 20,80 20,50 Z' fill='none' stroke='black' stroke-width='2' stroke-dasharray='5 3' /%3E%3C/svg%3E");
+        animation: float 15s ease-in-out infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
