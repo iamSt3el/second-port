@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Trophy, Calendar, Eye, X } from 'lucide-react';
+import { Trophy, Calendar, Eye, X, ExternalLink } from 'lucide-react';
 import FadeInSection from '../FadeInSection/FadeInSection';
 import DoodleBorder from '../DoodleBorder/DoodleBorder';
 import DoodleButton from '../DoodleButton/DoodleButton';
 import './AchievementSection.scss';
+
+import cipherThone from '../../assets/image copy.png';
+import innotek from '../../assets/image copy 2.png';
+import leetcode from '../../assets/image copy 3.png';
 
 const AchievementSection = () => {
   const [activeImage, setActiveImage] = useState(null);
@@ -14,21 +18,21 @@ const AchievementSection = () => {
       issuer: "CipherSchools",
       date: "2023-2024",
       description: "Participated in a national-level hackathon and secured the 2nd runner-up position for developing a legal chatbot.",
-      imageUrl: "/api/placeholder/800/600"
+      imageUrl: cipherThone
     },
     {
       title: "Innotek showcase",
       issuer: "Lovely Professional University",
       date: "2024",
       description: "Showcase legal chatbot project at Innotek 2024, a tech fest organized by Lovely Professional University. Demonstrated the capabilities of the chatbot to a diverse audience.",
-      imageUrl: "/api/placeholder/800/600"
+      imageUrl: innotek
     },
     {
-      title: "200 + leetcode problems solved",
+      title: "140 + leetcode problems solved",
       issuer: "LeetCode",
       date: "2023 - Current",
-      description: "Achieved a milestone of solving over 200 problems on LeetCode, showcasing proficiency in data structures and algorithms.",
-      imageUrl: "/api/placeholder/800/600"
+      description: "Achieved a milestone of solving over 140 problems on LeetCode, showcasing proficiency in data structures and algorithms.",
+      imageUrl: leetcode
     }
   ];
 
@@ -48,27 +52,42 @@ const AchievementSection = () => {
         <div className="achievements-grid">
           {achievements.map((achievement, index) => (
             <FadeInSection key={index} delay={index * 200}>
-              <div className="achievement-item">
-                <DoodleBorder isAchievement={true}>
+              <div className="achievement-card">
+                <div className="achievement-image">
+                  <img src={achievement.imageUrl} alt={achievement.title} />
+                  <div className="achievement-badge">
+                    <Trophy size={24} />
+                  </div>
+                </div>
+                
+                <div className="achievement-content">
                   <div className="achievement-header">
                     <h3>{achievement.title}</h3>
-                    <span className="achievement-date">{achievement.date}</span>
+                    <span className="achievement-date">
+                      <Calendar size={14} />
+                      {achievement.date}
+                    </span>
                   </div>
+                  
                   <p className="achievement-issuer">{achievement.issuer}</p>
                   <p className="achievement-description">{achievement.description}</p>
                   
-                  <DoodleButton 
-                    className="view-achievement-btn"
-                    onClick={() => handleShowImage(achievement.imageUrl)}
-                  >
-                    <Eye size={16} />
-                    <span>View Achievement</span>
-                  </DoodleButton>
-                  
-                  <div className="trophy-decoration">
-                    <Trophy size={40} />
+                  <div className="achievement-actions">
+                    
+                    
+                    {achievement.credentialUrl && (
+                      <a 
+                        href={achievement.credentialUrl} 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="verify-link"
+                      >
+                        <ExternalLink size={16} />
+                        <span>Verify</span>
+                      </a>
+                    )}
                   </div>
-                </DoodleBorder>
+                </div>
               </div>
             </FadeInSection>
           ))}

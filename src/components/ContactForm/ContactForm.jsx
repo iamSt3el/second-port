@@ -134,7 +134,7 @@ const ContactForm = () => {
         )}
         
         <div className="form-submit">
-          <DoodleButton className="submit-button" onClick={handleSubmit}>
+          <DoodleButton className="submit-button" type="submit">
             <Send size={18} />
             <span>Send Message</span>
           </DoodleButton>

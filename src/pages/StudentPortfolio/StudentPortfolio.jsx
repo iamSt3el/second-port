@@ -157,14 +157,14 @@ const StudentPortfolio = () => {
       title: "Transformers model to Translate English to Hindi",
       description: "A transformer model for translating English text to Hindi, utilizing deep learning techniques for natural language processing.",
       tags: ["Python", "Pytorch", "NLP"],
-      image: TypingGame,
+      image: Transformer,
       link: "https://github.com/iamSt3el/Transformer-english-hindi"
     },
     {
       title: "Typing Game",
       description: "Typing Game is a fun and interactive game that helps users improve their typing speed and accuracy.",
       tags: ["C++", "Raylib", "Cmake"],
-      image: Transformer,
+      image: TypingGame,
       link: "https://github.com/iamSt3el/typing_game"
     }
   ];
@@ -285,12 +285,25 @@ const StudentPortfolio = () => {
           <FadeInSection>
             <h2 id="projects-title">My Projects</h2>
 
-            <div className="projects-grid">
-              {projects.map((project, index) => (
-                <FadeInSection key={index} delay={index * 200}>
-                  <ProjectCard {...project} />
-                </FadeInSection>
-              ))}
+            <div className="projects-container">
+              <div className="project-background-elements">
+                <div className="doodle-element element-1"></div>
+                <div className="doodle-element element-2"></div>
+                <div className="doodle-element element-3"></div>
+              </div>
+
+              <div className="projects-grid">
+                {projects.map((project, index) => (
+                  <FadeInSection key={index} delay={index * 200}>
+                    <ProjectCard {...project} />
+                  </FadeInSection>
+                ))}
+              </div>
+
+              <div className="project-decoration">
+                <div className="decoration-line line-1"></div>
+                <div className="decoration-line line-2"></div>
+              </div>
             </div>
           </FadeInSection>
         </section>

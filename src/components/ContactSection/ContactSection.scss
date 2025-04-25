@@ -2,7 +2,16 @@
 
 .contact-section {
   position: relative;
-  overflow: hidden; // Changed from hidden to visible so dots aren't cut off
+  margin-bottom: $spacing-10;
+  width: 100%;
+  overflow: visible; /* Changed from hidden to visible to prevent cropping */
+  padding-bottom: 60px; /* Add extra padding at bottom to prevent cropping */
+  
+  .section-container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+  }
   
   h2#contact-title {
     position: relative;
@@ -30,16 +39,17 @@
     gap: $spacing-8;
     position: relative;
     z-index: 1;
-    padding: 12px; // Added small padding to ensure dots are visible
+    padding: 12px; /* Added small padding to ensure dots are visible */
     
     @media (min-width: $breakpoint-lg) {
       grid-template-columns: 1fr 1.5fr;
     }
     
     .contact-info {
-      position: relative; // Added to position the dots
+      position: relative; 
+      margin-bottom: 25px; /* Added margin to prevent cropping */
       
-      // Added yellow dot to top-left
+      /* Ensure corner dots are properly positioned and visible */
       &:before {
         content: '';
         position: absolute;
@@ -53,7 +63,6 @@
         z-index: 2;
       }
       
-      // Added pink dot to top-right
       &:after {
         content: '';
         position: absolute;
@@ -70,12 +79,12 @@
       .contact-info-card {
         height: 100%;
         background-color: $gray-50;
-        position: relative; // Added to position the dots
-        border: 2px solid black; // Added border to match design
-        border-radius: 1rem; // Added radius to match design
-        padding: $spacing-6; // Added padding
+        position: relative;
+        border: 2px solid black;
+        border-radius: 1rem;
+        padding: $spacing-6;
+        margin-bottom: 20px; /* Added margin to ensure visibility of bottom dots */
         
-        // Added green dot to bottom-left
         &:before {
           content: '';
           position: absolute;
@@ -89,7 +98,6 @@
           z-index: 2;
         }
         
-        // Added blue dot to bottom-right
         &:after {
           content: '';
           position: absolute;
@@ -133,7 +141,7 @@
           gap: $spacing-4;
           
           @media (min-width: $breakpoint-sm) {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           }
           
           .contact-info-item {
@@ -144,7 +152,7 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 42px;
+              min-width: 42px; /* Use min-width to prevent shrinking */
               height: 42px;
               background-color: white;
               border: 2px solid black;
@@ -161,6 +169,7 @@
               
               .contact-item-content {
                 color: $gray-600;
+                word-break: break-word; /* Ensure long emails wrap properly */
               }
             }
           }
@@ -189,6 +198,15 @@
             transform: rotate(-2deg);
           }
         }
+      }
+    }
+    
+    .contact-form-wrapper {
+      width: 100%;
+      margin-top: 25px; /* Add spacing after info card on mobile */
+      
+      @media (min-width: $breakpoint-lg) {
+        margin-top: 0; /* Reset on desktop */
       }
     }
   }
@@ -243,5 +261,23 @@
         animation: spin 20s linear infinite reverse;
       }
     }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -3,6 +3,7 @@
 
 .achievement-section {
   position: relative;
+  padding: $spacing-10 0;
   
   h2#achievements-title {
     position: relative;
@@ -27,7 +28,7 @@
   .achievements-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-6;
+    gap: $spacing-8;
     position: relative;
     z-index: 1;
     
@@ -35,79 +36,145 @@
       grid-template-columns: repeat(2, 1fr);
     }
     
-    .achievement-item {
-      height: 100%;
+    .achievement-card {
       position: relative;
+      border: 3px solid black;
+      border-radius: 12px;
+      background-color: white;
+      overflow: hidden;
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8);
+      transform: rotate(-1deg);
+      transition: all 0.3s ease;
       
-      .doodle-border {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        padding-bottom: $spacing-12;
+      &:hover {
+        transform: translateY(-8px) rotate(-1deg);
+        box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.7);
+        
+        .achievement-image img {
+          transform: scale(1.05);
+        }
+      }
+      
+      .achievement-image {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        border-bottom: 3px solid black;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+        
+        .achievement-badge {
+          position: absolute;
+          bottom: -15px;
+          right: 15px;
+          width: 45px;
+          height: 45px;
+          background-color: $yellow-300;
+          border: 2px solid black;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+          box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+          transform: rotate(-10deg);
+        }
+      }
+      
+      .achievement-content {
+        padding: $spacing-6;
         
         .achievement-header {
           display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          margin-bottom: $spacing-2;
+          flex-direction: column;
+          margin-bottom: $spacing-4;
+          
+          @media (min-width: $breakpoint-sm) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+          }
           
           h3 {
-            font-size: $text-lg;
+            font-size: $text-xl;
             font-weight: bold;
             margin: 0;
+            margin-bottom: $spacing-2;
+            color: $primary-black;
+            
+            @media (min-width: $breakpoint-sm) {
+              margin-bottom: 0;
+            }
           }
           
           .achievement-date {
+            display: flex;
+            align-items: center;
+            gap: $spacing-1;
             font-size: $text-sm;
             background-color: $blue-100;
             padding: $spacing-1 $spacing-2;
-            border-radius: 0.25rem;
+            border-radius: 20px;
             border: 1px solid black;
+            white-space: nowrap;
+            width: fit-content;
+            
+            svg {
+              color: $gray-700;
+            }
           }
         }
         
         .achievement-issuer {
           font-size: $text-sm;
-          font-weight: 500;
+          font-weight: 600;
           color: $gray-700;
           margin-bottom: $spacing-2;
+          padding-left: $spacing-1;
+          border-left: 3px solid $green-300;
         }
         
         .achievement-description {
           color: $gray-600;
           margin-bottom: $spacing-4;
-          flex-grow: 1;
+          line-height: 1.6;
         }
         
-        .view-achievement-btn {
-          position: absolute;
-          bottom: $spacing-4;
-          left: 50%;
-          transform: translateX(-50%);
-          background-color: $green-300;
+        .achievement-actions {
           display: flex;
           align-items: center;
-          gap: $spacing-2;
+          gap: $spacing-4;
           
-          &:hover {
-            background-color: darken($green-300, 10%);
+          .view-certificate-btn {
+            display: flex;
+            align-items: center;
+            gap: $spacing-2;
+            background-color: $green-300;
+            padding: $spacing-2 $spacing-4;
+            
+            &:hover {
+              background-color: darken($green-300, 5%);
+            }
           }
-        }
-        
-        .trophy-decoration {
-          position: absolute;
-          bottom: -15px;
-          right: -15px;
-          padding: 8px;
-          background-color: $yellow-300;
-          border: 2px solid black;
-          border-radius: 50%;
-          z-index: 2;
-          box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transform: rotate(-15deg);
+          
+          .verify-link {
+            display: flex;
+            align-items: center;
+            gap: $spacing-1;
+            color: $blue-600;
+            font-size: $text-sm;
+            text-decoration: none;
+            
+            &:hover {
+              text-decoration: underline;
+            }
+          }
         }
       }
     }
@@ -130,7 +197,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.8);
+      animation: fadeIn 0.3s ease;
     }
     
     .achievement-modal-content {
@@ -138,14 +206,15 @@
       max-width: 90%;
       max-height: 90%;
       z-index: 51;
-      animation: zoomIn 0.3s ease;
+      animation: zoomIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       
       img {
         max-width: 100%;
-        max-height: 80vh;
+        max-height: 85vh;
         border: 5px solid white;
-        border-radius: 5px;
+        border-radius: 10px;
         display: block;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
       
       .close-modal-btn {
@@ -163,9 +232,10 @@
         cursor: pointer;
         box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
         transition: all 0.2s ease;
+        z-index: 52;
         
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.1) rotate(90deg);
         }
       }
     }
@@ -182,7 +252,7 @@
     
     .doodle-star {
       position: absolute;
-      opacity: 0.1;
+      opacity: 0.15;
       width: 60px;
       height: 60px;
       background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,5 L35,25 L55,25 L40,40 L45,60 L30,48 L15,60 L20,40 L5,25 L25,25 Z' stroke='black' fill='none' stroke-width='2' /%3E%3C/svg%3E");
@@ -208,7 +278,7 @@
     
     .doodle-confetti {
       position: absolute;
-      opacity: 0.1;
+      opacity: 0.15;
       width: 100px;
       height: 100px;
       
@@ -229,12 +299,12 @@
   }
 }
 
-@keyframes pulse {
+@keyframes float {
   0%, 100% {
-    transform: scale(1);
+    transform: translateY(0);
   }
   50% {
-    transform: scale(1.2);
+    transform: translateY(-15px);
   }
 }
 
@@ -246,5 +316,14 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
   }
 }

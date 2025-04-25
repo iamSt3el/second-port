@@ -27,39 +27,41 @@ const ContactSection = () => {
   return (
     <section id="contact" className="contact-section">
       <FadeInSection>
-        <h2 id="contact-title">Get In Touch</h2>
-        
-        <div className="contact-container">
-          <div className="contact-info">
-            <DoodleBorder className="contact-info-card">
-              <h3 className="contact-info-title">Contact Information</h3>
-              <p className="contact-info-description">
-                Feel free to reach out to me with any questions or opportunities. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-              </p>
-              
-              <div className="contact-info-items">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="contact-info-item">
-                    <div className="contact-icon">
-                      <item.icon size={22} />
-                    </div>
-                    <div className="contact-details">
-                      <h4 className="contact-item-title">{item.title}</h4>
-                      <p className="contact-item-content">{item.content}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="contact-social-doodle">
-                <div className="doodle-arrow"></div>
-                <div className="doodle-text">Let's connect!</div>
-              </div>
-            </DoodleBorder>
-          </div>
+        <div className="section-container">
+          <h2 id="contact-title">Get In Touch</h2>
           
-          <div className="contact-form-wrapper">
-            <ContactForm />
+          <div className="contact-container">
+            <div className="contact-info">
+              <DoodleBorder className="contact-info-card">
+                <h3 className="contact-info-title">Contact Information</h3>
+                <p className="contact-info-description">
+                  Feel free to reach out to me with any questions or opportunities. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                </p>
+                
+                <div className="contact-info-items">
+                  {contactInfo.map((item, index) => (
+                    <div key={index} className="contact-info-item">
+                      <div className="contact-icon">
+                        <item.icon size={22} />
+                      </div>
+                      <div className="contact-details">
+                        <h4 className="contact-item-title">{item.title}</h4>
+                        <p className="contact-item-content">{item.content}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="contact-social-doodle">
+                  <div className="doodle-arrow"></div>
+                  <div className="doodle-text">Let's connect!</div>
+                </div>
+              </DoodleBorder>
+            </div>
+            
+            <div className="contact-form-wrapper">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </FadeInSection>

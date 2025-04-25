@@ -2,6 +2,14 @@
 
 .project-card {
   height: 100%;
+  display: flex;
+  
+  .doodle-border {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
   
   .project-image {
     margin-bottom: $spacing-4;
@@ -13,6 +21,11 @@
       width: 100%;
       height: 12rem;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
     }
   }
   
@@ -20,12 +33,21 @@
     font-size: $text-xl;
     font-weight: bold;
     margin-bottom: $spacing-2;
+    height: 3rem; // Fixed height for title
+    display: flex;
+    align-items: center; // For shorter titles to be vertically centered
   }
   
   .project-description {
     color: $gray-700;
     margin-bottom: $spacing-4;
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // Limit to 3 lines
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.5rem; // Fixed height based on 3 lines of text
+    line-height: 1.5;
   }
   
   .project-tags {
@@ -33,6 +55,7 @@
     flex-wrap: wrap;
     gap: $spacing-2;
     margin-bottom: $spacing-4;
+    min-height: 2.5rem; // Minimum height for tag section
     
     .tag {
       display: inline-block;
@@ -41,6 +64,12 @@
       background-color: $yellow-100;
       border: 1px solid black;
       border-radius: 0.25rem;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        background-color: $yellow-300;
+      }
     }
   }
   
@@ -48,9 +77,17 @@
     align-self: flex-start;
     display: flex;
     align-items: center;
+    margin-top: auto;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    background-color: $blue-100;
     
     span {
       margin-right: $spacing-2;
+    }
+    
+    &:hover {
+      transform: translateY(-3px);
+      background-color: $blue-300;
     }
   }
 }

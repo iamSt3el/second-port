@@ -24,13 +24,6 @@ const CertificateSection = () => {
       date: "November 2023",
       description: "In-depth understanding of data structures and algorithms, including arrays, linked lists, trees, and sorting algorithms.",
       imageUrl: secondProject,
-    },
-    {
-      title: "React Developer Certificate",
-      issuer: "Meta",
-      date: "March 2023",
-      description: "Advanced training in React.js, state management, hooks, and modern front-end development practices.",
-      imageUrl: "/api/placeholder/800/600",
     }
   ];
 
