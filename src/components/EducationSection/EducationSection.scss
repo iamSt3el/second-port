@@ -3,13 +3,14 @@
 
 .education-section {
   position: relative;
+  padding-bottom: $spacing-10;
   
   h2#education-title {
     position: relative;
     display: inline-block;
     font-size: $text-3xl;
     font-weight: bold;
-    margin-bottom: $spacing-10;
+    margin-bottom: $spacing-12;
 
     &::after {
       content: '';
@@ -24,23 +25,93 @@
     }
   }
   
-  .education-items {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-8;
+  .education-timeline {
     position: relative;
-    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-6 0;
     
-    @media (min-width: $breakpoint-md) {
-      grid-template-columns: 1fr;
+    // Timeline vertical line
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background-color: $gray-100;
+      border: 1px dashed black;
+      transform: translateX(-50%);
+      z-index: 0;
+      
+      @media (max-width: $breakpoint-md) {
+        left: 30px;
+      }
     }
     
     .education-item {
+      position: relative;
+      margin-bottom: $spacing-12;
+      z-index: 1;
+      
+      // Position left and right items
+      &.left {
+        margin-right: 50%;
+        padding-right: $spacing-8;
+        
+        .timeline-dot {
+          right: -1.25rem;
+        }
+        
+        @media (max-width: $breakpoint-md) {
+          margin-right: 0;
+          padding-right: 0;
+          padding-left: 60px;
+          
+          .timeline-dot {
+            left: 26px;
+            right: auto;
+          }
+        }
+      }
+      
+      &.right {
+        margin-left: 50%;
+        padding-left: $spacing-8;
+        
+        .timeline-dot {
+          left: -1.25rem;
+        }
+        
+        @media (max-width: $breakpoint-md) {
+          margin-left: 0;
+          padding-left: 60px;
+          
+          .timeline-dot {
+            left: 26px;
+          }
+        }
+      }
+      
+      .timeline-dot {
+        position: absolute;
+        top: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        border: 3px solid black;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        z-index: 2;
+      }
+      
       .education-card {
-        padding: $spacing-6;
         position: relative;
+        padding: $spacing-6;
         transform: rotate(-1deg);
         transition: transform 0.3s ease;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        overflow: visible; // Important to show decorations
         
         &:hover {
           transform: translateY(-5px) rotate(-1deg);
@@ -53,7 +124,6 @@
           transform: translateX(-50%);
           width: 60px;
           height: 60px;
-          background-color: $white;
           border: 3px solid black;
           border-radius: 50%;
           display: flex;
@@ -72,7 +142,22 @@
           font-size: $text-xl;
           font-weight: 700;
           margin-top: $spacing-4;
+          margin-bottom: $spacing-2;
+        }
+        
+        .education-field {
+          text-align: center;
+          font-size: $text-base;
+          font-weight: 600;
+          color: $blue-600;
           margin-bottom: $spacing-4;
+          padding: $spacing-1 $spacing-3;
+          background-color: $blue-50;
+          border: 1px dashed black;
+          border-radius: 20px;
+          width: fit-content;
+          margin-left: auto;
+          margin-right: auto;
         }
         
         .education-details {
@@ -81,7 +166,7 @@
           gap: $spacing-2;
           margin-bottom: $spacing-4;
           
-          @media (min-width: $breakpoint-md) {
+          @media (min-width: $breakpoint-sm) {
             grid-template-columns: repeat(3, 1fr);
           }
           
@@ -106,62 +191,35 @@
           margin-bottom: $spacing-4;
           line-height: 1.6;
           color: $gray-700;
+          flex-grow: 1;
         }
         
-        .education-courses {
-          margin-bottom: $spacing-4;
+        .education-decoration {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          width: 100px;
+          height: 60px;
+          opacity: 0.1;
+          pointer-events: none;
           
-          h4 {
-            font-size: $text-base;
-            font-weight: 600;
-            margin-bottom: $spacing-2;
-          }
-          
-          .course-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: $spacing-2;
+          .decoration-element {
+            position: absolute;
             
-            .course-tag {
-              display: inline-block;
-              padding: $spacing-1 $spacing-2;
-              background-color: $yellow-100;
-              border: 1px solid black;
-              border-radius: 0.25rem;
-              font-size: $text-sm;
+            &.element-1 {
+              bottom: 0;
+              right: 0;
+              width: 60px;
+              height: 60px;
+              background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,30 C10,20 20,10 30,10 C40,10 50,20 50,30 C50,40 40,50 30,50 C20,50 10,40 10,30 Z' stroke='black' fill='none' stroke-width='2' /%3E%3C/svg%3E");
             }
-          }
-        }
-        
-        .education-achievements {
-          h4 {
-            font-size: $text-base;
-            font-weight: 600;
-            margin-bottom: $spacing-2;
-          }
-          
-          .achievement-list {
-            list-style-type: none;
-            padding-left: 0;
             
-            li {
-              position: relative;
-              padding-left: $spacing-6;
-              margin-bottom: $spacing-2;
-              line-height: 1.5;
-              color: $gray-700;
-              
-              &:before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0.6rem;
-                width: 0.75rem;
-                height: 0.75rem;
-                background-color: $blue-300;
-                border: 1px solid black;
-                border-radius: 50%;
-              }
+            &.element-2 {
+              top: 0;
+              left: 0;
+              width: 40px;
+              height: 40px;
+              background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,10 L30,30 M10,30 L30,10' stroke='black' stroke-width='2' /%3E%3C/svg%3E");
             }
           }
         }

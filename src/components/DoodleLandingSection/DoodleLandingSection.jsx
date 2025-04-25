@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, Sparkles, Code, Palette, Lightbulb, BookOpen } from 'lucide-react';
+import { ArrowDown, Sparkles, Code, Palette, Lightbulb, BookOpen, Terminal } from 'lucide-react';
 import DoodleButton from '../DoodleButton/DoodleButton';
 import './DoodleLandingSection.scss';
 
@@ -71,6 +71,9 @@ const DoodleLandingSection = ({ onExploreClick }) => {
           </div>
           <div className="floating-icon icon-5">
             <Sparkles size={28} />
+          </div>
+          <div className="floating-icon icon-6">
+            <Terminal size={28} />
           </div>
         </div>
         
