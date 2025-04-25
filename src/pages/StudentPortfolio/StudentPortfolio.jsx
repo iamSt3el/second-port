@@ -250,7 +250,7 @@ const StudentPortfolio = () => {
                   <div className="social-icons">
                     <SocialIcon icon={Github} href="https://github.com/iamSt3el" label="GitHub" />
                     <SocialIcon icon={Linkedin} href="https://www.linkedin.com/in/hd9a0b" label="LinkedIn" />
-                    <SocialIcon icon={Mail} href="himanshudhaka9166@gmail.com" label="Email" />
+                    <SocialIcon icon={Mail} href="mailto:himanshudhaka9166@gmail.com" label="Email" />
                   </div>
 
                   <DoodleButton className="download-cv" onClick={handleDownloadCV}>
@@ -324,7 +324,7 @@ const StudentPortfolio = () => {
           <div className="social-icons">
             <SocialIcon icon={Github} href="https://github.com/iamSt3el" label="GitHub" />
             <SocialIcon icon={Linkedin} href="https://www.linkedin.com/in/hd9a0b" label="LinkedIn" />
-            <SocialIcon icon={Mail} href="himanshudhaka9166@gmail.com" label="Email" />
+            <SocialIcon icon={Mail} href="mailto:himanshudhaka9166@gmail.com" label="Email" />
           </div>
           <p className="copyright">
             Designed and built with ❤️ by Himanshu © {new Date().getFullYear()}
