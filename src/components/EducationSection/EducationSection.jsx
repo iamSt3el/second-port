@@ -7,28 +7,23 @@ import './EducationSection.scss';
 const EducationSection = () => {
   const educationItems = [
     {
-      degree: "Bachelor of Science in Computer Science",
-      institution: "University of Technology",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
-      description: "Focusing on software development, machine learning, and human-computer interaction. Maintaining a GPA of 3.8/4.0.",
-      courses: ["Data Structures & Algorithms", "Machine Learning", "Software Engineering", "Web Development"]
+      degree: "Bachelor of Technology",
+      description: "Pursuing a degree in Computer Science and Engineering.",
+      institution: "Lovely Professional University",
+      location: "Phagwara, Punjab",
+      period: "2021 - Present",
     },
     {
-      degree: "Summer Research Program",
-      institution: "Tech Innovation Institute",
-      location: "Boston, MA",
-      period: "Summer 2023",
-      description: "Selected for a competitive research program focused on artificial intelligence applications in healthcare.",
-      achievements: ["Developed a machine learning model for predicting patient outcomes", "Presented research at the Student Innovation Conference"]
+      degree: "12 th Grade",
+      institution: "Matrix Hight School",
+      location: "Sikar, Rajasthan",
+      period: "2020 - 2021",
     },
     {
-      degree: "High School Diploma",
-      institution: "Central High School",
-      location: "Portland, OR",
-      period: "2018 - 2022",
-      description: "Graduated with honors. President of the Computer Science Club and member of the Math Team.",
-      achievements: ["Valedictorian", "National Merit Scholar", "First place in Regional Coding Competition"]
+      degree: "10 th Grade",
+      institution: "Hind Academy School",
+      location: "Chirawa, Rajasthan",
+      period: "2018 - 2019"
     }
   ];
 

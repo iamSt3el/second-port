@@ -10,31 +10,24 @@ const AchievementSection = () => {
 
   const achievements = [
     {
-      title: "Dean's List",
-      issuer: "University of Technology",
+      title: "CipherThone 2nd Runner Up",
+      issuer: "CipherSchools",
       date: "2023-2024",
-      description: "Recognized for outstanding academic achievement with GPA above 3.8 for three consecutive semesters.",
+      description: "Participated in a national-level hackathon and secured the 2nd runner-up position for developing a legal chatbot.",
       imageUrl: "/api/placeholder/800/600"
     },
     {
-      title: "Hackathon Winner",
-      issuer: "TechCrunch Disrupt",
-      date: "May 2023",
-      description: "First place in the annual coding competition for developing an innovative solution for elderly care.",
+      title: "Innotek showcase",
+      issuer: "Lovely Professional University",
+      date: "2024",
+      description: "Showcase legal chatbot project at Innotek 2024, a tech fest organized by Lovely Professional University. Demonstrated the capabilities of the chatbot to a diverse audience.",
       imageUrl: "/api/placeholder/800/600"
     },
     {
-      title: "Research Publication",
-      issuer: "International Journal of Computer Science",
-      date: "January 2024",
-      description: "Co-authored a paper on efficient algorithms for natural language processing in resource-constrained environments.",
-      imageUrl: "/api/placeholder/800/600"
-    },
-    {
-      title: "Leadership Award",
-      issuer: "Student Government Association",
-      date: "December 2023",
-      description: "Recognized for exceptional leadership as president of the Computer Science Club, organizing workshops and mentoring sessions.",
+      title: "200 + leetcode problems solved",
+      issuer: "LeetCode",
+      date: "2023 - Current",
+      description: "Achieved a milestone of solving over 200 problems on LeetCode, showcasing proficiency in data structures and algorithms.",
       imageUrl: "/api/placeholder/800/600"
     }
   ];

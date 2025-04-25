@@ -1,5 +1,34 @@
 import React from 'react';
-import { Code, Server, Figma, BrainCircuit, Database, Globe, Paintbrush, Cpu, Radar, Terminal, Layers, Monitor } from 'lucide-react';
+import {
+  Code,
+  Server,
+  Figma,
+  BrainCircuit,
+  Database,
+  Globe,
+  Paintbrush,
+  Cpu,
+  Radar,
+  Terminal,
+  Layers,
+  Monitor,
+  Plug,
+  Brain,
+  Camera,
+  Mic,
+  Atom,
+  Flame,
+  Puzzle,
+  Smile,
+  Search,
+  LayoutDashboard,
+  GitBranch,
+  Github,
+  TerminalSquare,
+  Book,
+  Lightbulb,
+  LayoutGrid
+} from 'lucide-react';
 import FadeInSection from '../FadeInSection/FadeInSection';
 import SkillBar from '../SkillBar/SkillBar';
 import DoodleBorder from '../DoodleBorder/DoodleBorder';
@@ -8,10 +37,18 @@ import './SkillsSection.scss';
 const SkillsSection = () => {
   const skillCategories = [
     {
+      name: 'Languages',
+      skills: [
+        { name: 'C++', level: 80, icon: Code, color: '#3b82f6' },
+        { name: 'Java', level: 75, icon: Code, color: '#f59e0b' },
+        { name: 'JavaScript', level: 70, icon: Terminal, color: '#eab308' },
+        { name: 'Python', level: 85, icon: Cpu, color: '#3b82f6' }
+      ]
+    },
+    {
       name: 'Frontend Development',
       skills: [
         { name: 'HTML/CSS', level: 95, icon: Code, color: '#f97316' },
-        { name: 'JavaScript', level: 90, icon: Terminal, color: '#eab308' },
         { name: 'React', level: 85, icon: Monitor, color: '#06b6d4' }
       ]
     },
@@ -19,19 +56,41 @@ const SkillsSection = () => {
       name: 'Backend Development',
       skills: [
         { name: 'Node.js', level: 80, icon: Server, color: '#22c55e' },
-        { name: 'Python', level: 75, icon: Cpu, color: '#3b82f6' },
-        { name: 'SQL', level: 70, icon: Database, color: '#8b5cf6' }
+        { name: 'API Integration', level: 75, icon: Plug, color: '#0ea5e9' }
+      ]
+    },
+    {
+      name: 'AI/ML',
+      skills: [
+        { name: 'Machine Learning', level: 80, icon: Brain, color: '#14b8a6' },
+        { name: 'TensorFlow', level: 80, icon: Atom, color: '#f97316' },
+        { name: 'PyTorch', level: 75, icon: Flame, color: '#ef4444' },
+        { name: 'Scikit-learn', level: 75, icon: Puzzle, color: '#facc15' },
+        { name: 'Haystack AI', level: 70, icon: Search, color: '#22d3ee' },
+        { name: 'ComfyUI', level: 65, icon: LayoutDashboard, color: '#06b6d4' }
+      ]
+    },
+    {
+      name: 'DevOps & Tools',
+      skills: [
+        { name: 'Git', level: 85, icon: GitBranch, color: '#f43f5e' },
+        { name: 'GitHub', level: 85, icon: Github, color: '#000' },
+        { name: 'Linux', level: 80, icon: TerminalSquare, color: '#64748b' },
+        { name: 'Google APIs', level: 75, icon: Globe, color: '#3b82f6' },
+        { name: 'Docker', level: 80, icon: Atom, color: '#f97316' },
       ]
     },
     {
       name: 'Other Skills',
       skills: [
         { name: 'UI/UX Design', level: 85, icon: Figma, color: '#ec4899' },
-        { name: 'Machine Learning', level: 65, icon: BrainCircuit, color: '#14b8a6' },
-        { name: 'SEO', level: 75, icon: Globe, color: '#6366f1' }
+        { name: 'Data Structures & Algorithms', level: 80, icon: Book, color: '#8b5cf6' },
+        { name: 'Problem Solving', level: 80, icon: Lightbulb, color: '#eab308' },
+        { name: 'Streamlit', level: 70, icon: LayoutGrid, color: '#f43f5e' }
       ]
     }
   ];
+  
 
   return (
     <section id="skills" className="skills-section">

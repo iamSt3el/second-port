@@ -15,6 +15,13 @@ import AchievementSection from '../../components/AchievementSection/AchievementS
 import ContactSection from '../../components/ContactSection/ContactSection';
 import DoodleLandingSection from '../../components/DoodleLandingSection/DoodleLandingSection';
 
+// Import assets
+import ProfileImage from '../../assets/image.png';
+import cv from '../../assets/sp_cv_updated.pdf';
+import Note_me from '../../assets/screenshot_17042025_070826.jpg';
+import TypingGame from '../../assets/screenshot_20042025_180658.jpg';
+import Transformer from '../../assets/screenshot_20042025_181121.jpg'
+
 // Import styles
 import './StudentPortfolio.scss';
 
@@ -23,29 +30,42 @@ const StudentPortfolio = () => {
   const [animateDoodle, setAnimateDoodle] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
-  
+
   // Debug flag to help troubleshoot
   const [debugInfo, setDebugInfo] = useState({ scrollY: 0 });
+
+  const handleDownloadCV = () => {
+    // Replace this URL with the actual path to your CV file
+    const cvUrl = cv;
+
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = 'Himanshu_CV.pdf'; // Set desired filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     // Trigger doodle animation when component mounts
     setAnimateDoodle(true);
-    
+
     // Show header when scrolled down
     const handleScroll = () => {
       // Update debug info
       setDebugInfo({ scrollY: window.scrollY });
-      
+
       // Show header when scrolled down
       if (window.scrollY > 100) {
         setShowHeader(true);
       } else {
         setShowHeader(false);
       }
-      
+
       // Update active section based on scroll position
       const scrollPositionWithOffset = window.scrollY + 200;
-      
+
       const landingSection = document.getElementById('landing');
       const aboutSection = document.getElementById('about');
       const skillsSection = document.getElementById('skills');
@@ -54,7 +74,7 @@ const StudentPortfolio = () => {
       const certificatesSection = document.getElementById('certificates');
       const achievementsSection = document.getElementById('achievements');
       const contactSection = document.getElementById('contact');
-      
+
       if (landingSection && window.scrollY < landingSection.offsetHeight - 200) {
         setActiveSection('landing');
       } else if (aboutSection && scrollPositionWithOffset < aboutSection.offsetTop + aboutSection.offsetHeight) {
@@ -73,12 +93,12 @@ const StudentPortfolio = () => {
         setActiveSection('contact');
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    
+
     // Call once to set initial state
     handleScroll();
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -87,30 +107,30 @@ const StudentPortfolio = () => {
     if (section) {
       // Set active section immediately for UI feedback
       setActiveSection(sectionId);
-      
+
       // Show header when navigating to any section
       setShowHeader(true);
-      
+
       // Get offset for header height
       const headerHeight = 80;
-      
+
       // Scroll to the section
       window.scrollTo({
         top: section.offsetTop - headerHeight,
         behavior: 'smooth'
       });
     }
-    
+
     setMobileMenuOpen(false);
   };
-  
+
   // This function is specifically for the explore button
   const handleExploreClick = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
       // Force the header to appear
       setShowHeader(true);
-      
+
       // Use setTimeout to ensure header is visible first
       setTimeout(() => {
         // Direct DOM scroll for maximum reliability
@@ -118,7 +138,7 @@ const StudentPortfolio = () => {
           top: aboutSection.offsetTop - 80, // 80px header offset
           behavior: 'smooth'
         });
-        
+
         // Also update active section
         setActiveSection('about');
       }, 10);
@@ -127,25 +147,25 @@ const StudentPortfolio = () => {
 
   const projects = [
     {
-      title: "Machine Learning Classifier",
-      description: "Built a machine learning model to classify images of handwritten digits with 98% accuracy.",
-      tags: ["Python", "TensorFlow", "Computer Vision"],
-      image: "/api/placeholder/600/400",
-      link: "#"
+      title: "Note.me",
+      description: "Note.me is a notes application that allows users to create, edit, and delete notes. It is built using Mern stack and provides a user-friendly interface for managing notes.",
+      tags: ["React", "MongoDB", "Express", "Node.js", "Sass"],
+      image: Note_me,
+      link: "https://github.com/iamSt3el/note.me"
     },
     {
-      title: "Personal Finance App",
-      description: "Developed a mobile app to help students track expenses and save money with budget recommendations.",
-      tags: ["React Native", "Firebase", "UI/UX"],
-      image: "/api/placeholder/600/400",
-      link: "#"
+      title: "Transformers model to Translate English to Hindi",
+      description: "A transformer model for translating English text to Hindi, utilizing deep learning techniques for natural language processing.",
+      tags: ["Python", "Pytorch", "NLP"],
+      image: TypingGame,
+      link: "https://github.com/iamSt3el/Transformer-english-hindi"
     },
     {
-      title: "Climate Change Dashboard",
-      description: "Created an interactive visualization of climate data to raise awareness about environmental issues.",
-      tags: ["D3.js", "JavaScript", "Data Visualization"],
-      image: "/api/placeholder/600/400",
-      link: "#"
+      title: "Typing Game",
+      description: "Typing Game is a fun and interactive game that helps users improve their typing speed and accuracy.",
+      tags: ["C++", "Raylib", "Cmake"],
+      image: Transformer,
+      link: "https://github.com/iamSt3el/typing_game"
     }
   ];
 
@@ -160,20 +180,20 @@ const StudentPortfolio = () => {
           <div className="logo-container">
             <div className="logo">
               <div className="logo-bg"></div>
-              <div className="logo-text">JS</div>
+              <div className="logo-text">H</div>
             </div>
-            <h1>Jane Student</h1>
+            <h1>Himanshu</h1>
           </div>
-          
+
           {/* Mobile menu toggle */}
-          <button 
+          <button
             className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
           >
             <div className="bar"></div>
           </button>
-          
+
           <nav className={mobileMenuOpen ? 'mobile-open' : ''}>
             <NavItem active={activeSection === 'about'} onClick={() => scrollToSection('about')}>
               About Me
@@ -205,7 +225,7 @@ const StudentPortfolio = () => {
         <section id="landing">
           <DoodleLandingSection onExploreClick={handleExploreClick} />
         </section>
-      
+
         {/* About Section */}
         <section id="about">
           <FadeInSection>
@@ -214,38 +234,37 @@ const StudentPortfolio = () => {
                 <h2 id="about-title">About Me</h2>
                 <DoodleBorder>
                   <p className="text-lg mb-4">
-                    Hello! I'm Jane, a Computer Science student passionate about solving real-world problems through technology. 
+                    Hello! I'm Himanshu, a Computer Science student passionate about solving real-world problems through technology.
                     I specialize in web development, machine learning, and creative coding.
                   </p>
                   <p className="text-lg mb-4">
-                    Currently pursuing my Bachelor's degree at the University of Technology, I'm constantly exploring the 
-                    intersection of technology and human experience. When not coding, you can find me sketching, 
-                    hiking, or volunteering at local tech workshops.
+                    Currently pursuing my Bachelor's degree at Lovely Professional University, I'm constantly exploring the
+                    intersection of technology and human experience. When not coding, you can find me sketching,
+                    reading and gaming.
                   </p>
                   <p className="text-lg mb-6">
-                    I believe in creating technology that makes a positive impact on society and am looking for 
+                    I believe in creating technology that makes a positive impact on society and am looking for
                     opportunities to collaborate on meaningful projects.
                   </p>
-                  
+
                   <div className="social-icons">
-                    <SocialIcon icon={Github} href="#" label="GitHub" />
-                    <SocialIcon icon={Linkedin} href="#" label="LinkedIn" />
-                    <SocialIcon icon={Instagram} href="#" label="Instagram" />
-                    <SocialIcon icon={Mail} href="mailto:jane@example.com" label="Email" />
+                    <SocialIcon icon={Github} href="https://github.com/iamSt3el" label="GitHub" />
+                    <SocialIcon icon={Linkedin} href="https://www.linkedin.com/in/hd9a0b" label="LinkedIn" />
+                    <SocialIcon icon={Mail} href="himanshudhaka9166@gmail.com" label="Email" />
                   </div>
-                  
-                  <DoodleButton className="download-cv">
+
+                  <DoodleButton className="download-cv" onClick={handleDownloadCV}>
                     <Download size={18} />
                     <span>Download CV</span>
                   </DoodleButton>
                 </DoodleBorder>
               </div>
-              
+
               <div className="profile-image-container">
                 <div className="profile-image-wrapper">
                   <div className="rotating-circle"></div>
                   <div className="profile-image">
-                    <img src="/api/placeholder/400/400" alt="Jane Student" />
+                    <img src={ProfileImage} alt="Jane Student" />
                   </div>
                   <div className="decorative-dot top"></div>
                   <div className="decorative-dot bottom"></div>
@@ -254,18 +273,18 @@ const StudentPortfolio = () => {
             </div>
           </FadeInSection>
         </section>
-        
+
         {/* Skills Section */}
         <SkillsSection />
-        
+
         {/* Education Section */}
         <EducationSection />
-        
+
         {/* Projects Section */}
         <section id="projects">
           <FadeInSection>
             <h2 id="projects-title">My Projects</h2>
-            
+
             <div className="projects-grid">
               {projects.map((project, index) => (
                 <FadeInSection key={index} delay={index * 200}>
@@ -275,28 +294,27 @@ const StudentPortfolio = () => {
             </div>
           </FadeInSection>
         </section>
-        
+
         {/* Certificates Section */}
         <CertificateSection />
-        
+
         {/* Achievements Section */}
         <AchievementSection />
-        
+
         {/* Contact Section */}
         <ContactSection />
       </main>
-      
+
       {/* Footer */}
       <footer>
         <div className="container">
           <div className="social-icons">
-            <SocialIcon icon={Github} href="#" label="GitHub" />
-            <SocialIcon icon={Linkedin} href="#" label="LinkedIn" />
-            <SocialIcon icon={Instagram} href="#" label="Instagram" />
-            <SocialIcon icon={Mail} href="mailto:jane@example.com" label="Email" />
+            <SocialIcon icon={Github} href="https://github.com/iamSt3el" label="GitHub" />
+            <SocialIcon icon={Linkedin} href="https://www.linkedin.com/in/hd9a0b" label="LinkedIn" />
+            <SocialIcon icon={Mail} href="himanshudhaka9166@gmail.com" label="Email" />
           </div>
           <p className="copyright">
-            Designed and built with ❤️ by Jane Student © {new Date().getFullYear()}
+            Designed and built with ❤️ by Himanshu © {new Date().getFullYear()}
           </p>
         </div>
       </footer>

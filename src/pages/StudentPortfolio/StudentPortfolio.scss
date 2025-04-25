@@ -318,7 +318,7 @@
     
     .profile-image-container {
       display: flex;
-      justify-content: center;
+      justify-content:center;
       margin-bottom: $spacing-8;
       
       @media (min-width: $breakpoint-md) {
@@ -327,8 +327,8 @@
       
       .profile-image-wrapper {
         position: relative;
-        width: 20rem;
-        height: 20rem;
+        width: 28rem;
+        height: 28rem;
         
         .rotating-circle {
           position: absolute;

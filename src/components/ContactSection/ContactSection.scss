@@ -2,7 +2,7 @@
 
 .contact-section {
   position: relative;
-  overflow: visible; // Changed from hidden to visible so dots aren't cut off
+  overflow: hidden; // Changed from hidden to visible so dots aren't cut off
   
   h2#contact-title {
     position: relative;

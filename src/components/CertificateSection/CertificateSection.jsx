@@ -4,27 +4,26 @@ import FadeInSection from '../FadeInSection/FadeInSection';
 import DoodleBorder from '../DoodleBorder/DoodleBorder';
 import DoodleButton from '../DoodleButton/DoodleButton';
 import './CertificateSection.scss';
-import firstProject from '../../assets/image.jpeg'
+import firstProject from '../../assets/screenshot_20042025_183121.jpg';
+import secondProject from '../../assets/screenshot_20042025_183317.jpg';
 
 const CertificateSection = () => {
   const [activeImage, setActiveImage] = useState(null);
 
   const certificates = [
     {
-      title: "AWS Certified Solutions Architect",
-      issuer: "Amazon Web Services",
-      date: "February 2024",
-      description: "Validated expertise in designing distributed systems on AWS, including security, networking, and database considerations.",
+      title: "Understanding of Cloud Fundamentals",
+      issuer: "Corsera",
+      date: "February 2023",
+      description: "Fundamentals of cloud computing, including cloud service models, deployment models, and security considerations.",
       imageUrl: firstProject,
-      credentialUrl: "#"
     },
     {
-      title: "Google Data Analytics Professional Certificate",
-      issuer: "Google",
+      title: "Data Structures and Algorithms",
+      issuer: "CipherSchools",
       date: "November 2023",
-      description: "Comprehensive program covering data analysis, visualization, and manipulation using SQL, R, and Tableau.",
-      imageUrl: "/api/placeholder/800/600",
-      credentialUrl: "#"
+      description: "In-depth understanding of data structures and algorithms, including arrays, linked lists, trees, and sorting algorithms.",
+      imageUrl: secondProject,
     },
     {
       title: "React Developer Certificate",
@@ -32,7 +31,6 @@ const CertificateSection = () => {
       date: "March 2023",
       description: "Advanced training in React.js, state management, hooks, and modern front-end development practices.",
       imageUrl: "/api/placeholder/800/600",
-      credentialUrl: "#"
     }
   ];
 

@@ -10,22 +10,17 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: 'Location',
-      content: 'San Francisco, CA'
+      content: 'Phagwara, Punjab'
     },
     {
       icon: Phone,
       title: 'Phone',
-      content: '+1 (555) 123-4567'
+      content: '+91 9079894817'
     },
     {
       icon: Mail,
       title: 'Email',
-      content: 'jane@example.com'
-    },
-    {
-      icon: Clock,
-      title: 'Working Hours',
-      content: 'Mon - Fri: 9AM - 5PM'
+      content: 'himanshudhaka9166@gmail.com'
     }
   ];
 

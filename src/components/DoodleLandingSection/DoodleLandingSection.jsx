@@ -6,7 +6,7 @@ import './DoodleLandingSection.scss';
 const DoodleLandingSection = ({ onExploreClick }) => {
   const [animateElements, setAnimateElements] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const fullText = "Creative Developer & Student";
+  const fullText = "AI/ML Enthusiast | Web Developer | DevOps Engineer";
   
   // Animate elements after component mounts
   useEffect(() => {
@@ -48,8 +48,7 @@ const DoodleLandingSection = ({ onExploreClick }) => {
       <div className={`landing-content ${animateElements ? 'animate' : ''}`}>
         <div className="name-container">
           <h1 className="name">
-            <span className="first-name">Jane</span>
-            <span className="last-name">Student</span>
+            <span className="first-name">Himanshu</span>
           </h1>
           <div className="title-container">
             <span className="typed-title">{typedText}</span>
