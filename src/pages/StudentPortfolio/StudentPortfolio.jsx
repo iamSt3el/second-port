@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Instagram, Mail, Download } from 'lucide-react';
 
 // Import components
@@ -13,23 +13,40 @@ import EducationSection from '../../components/EducationSection/EducationSection
 import CertificateSection from '../../components/CertificateSection/CertificateSection';
 import AchievementSection from '../../components/AchievementSection/AchievementSection';
 import ContactSection from '../../components/ContactSection/ContactSection';
+import DoodleLandingSection from '../../components/DoodleLandingSection/DoodleLandingSection';
 
 // Import styles
 import './StudentPortfolio.scss';
 
 const StudentPortfolio = () => {
-  const [activeSection, setActiveSection] = useState('about');
+  const [activeSection, setActiveSection] = useState('landing');
   const [animateDoodle, setAnimateDoodle] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(false);
+  
+  // Debug flag to help troubleshoot
+  const [debugInfo, setDebugInfo] = useState({ scrollY: 0 });
 
   useEffect(() => {
     // Trigger doodle animation when component mounts
     setAnimateDoodle(true);
     
-    // Setup section highlighting based on scroll
+    // Show header when scrolled down
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
+      // Update debug info
+      setDebugInfo({ scrollY: window.scrollY });
       
+      // Show header when scrolled down
+      if (window.scrollY > 100) {
+        setShowHeader(true);
+      } else {
+        setShowHeader(false);
+      }
+      
+      // Update active section based on scroll position
+      const scrollPositionWithOffset = window.scrollY + 200;
+      
+      const landingSection = document.getElementById('landing');
       const aboutSection = document.getElementById('about');
       const skillsSection = document.getElementById('skills');
       const educationSection = document.getElementById('education');
@@ -38,17 +55,19 @@ const StudentPortfolio = () => {
       const achievementsSection = document.getElementById('achievements');
       const contactSection = document.getElementById('contact');
       
-      if (aboutSection && scrollPosition < aboutSection.offsetTop + aboutSection.offsetHeight) {
+      if (landingSection && window.scrollY < landingSection.offsetHeight - 200) {
+        setActiveSection('landing');
+      } else if (aboutSection && scrollPositionWithOffset < aboutSection.offsetTop + aboutSection.offsetHeight) {
         setActiveSection('about');
-      } else if (skillsSection && scrollPosition < skillsSection.offsetTop + skillsSection.offsetHeight) {
+      } else if (skillsSection && scrollPositionWithOffset < skillsSection.offsetTop + skillsSection.offsetHeight) {
         setActiveSection('skills');
-      } else if (educationSection && scrollPosition < educationSection.offsetTop + educationSection.offsetHeight) {
+      } else if (educationSection && scrollPositionWithOffset < educationSection.offsetTop + educationSection.offsetHeight) {
         setActiveSection('education');
-      } else if (projectsSection && scrollPosition < projectsSection.offsetTop + projectsSection.offsetHeight) {
+      } else if (projectsSection && scrollPositionWithOffset < projectsSection.offsetTop + projectsSection.offsetHeight) {
         setActiveSection('projects');
-      } else if (certificatesSection && scrollPosition < certificatesSection.offsetTop + certificatesSection.offsetHeight) {
+      } else if (certificatesSection && scrollPositionWithOffset < certificatesSection.offsetTop + certificatesSection.offsetHeight) {
         setActiveSection('certificates');
-      } else if (achievementsSection && scrollPosition < achievementsSection.offsetTop + achievementsSection.offsetHeight) {
+      } else if (achievementsSection && scrollPositionWithOffset < achievementsSection.offsetTop + achievementsSection.offsetHeight) {
         setActiveSection('achievements');
       } else if (contactSection) {
         setActiveSection('contact');
@@ -56,19 +75,54 @@ const StudentPortfolio = () => {
     };
     
     window.addEventListener('scroll', handleScroll);
+    
+    // Call once to set initial state
+    handleScroll();
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
+      // Set active section immediately for UI feedback
+      setActiveSection(sectionId);
+      
+      // Show header when navigating to any section
+      setShowHeader(true);
+      
+      // Get offset for header height
+      const headerHeight = 80;
+      
+      // Scroll to the section
       window.scrollTo({
-        top: section.offsetTop - 100,
+        top: section.offsetTop - headerHeight,
         behavior: 'smooth'
       });
     }
-    setActiveSection(sectionId);
+    
     setMobileMenuOpen(false);
+  };
+  
+  // This function is specifically for the explore button
+  const handleExploreClick = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      // Force the header to appear
+      setShowHeader(true);
+      
+      // Use setTimeout to ensure header is visible first
+      setTimeout(() => {
+        // Direct DOM scroll for maximum reliability
+        window.scrollTo({
+          top: aboutSection.offsetTop - 80, // 80px header offset
+          behavior: 'smooth'
+        });
+        
+        // Also update active section
+        setActiveSection('about');
+      }, 10);
+    }
   };
 
   const projects = [
@@ -101,7 +155,7 @@ const StudentPortfolio = () => {
       <div className={`animated-doodles ${animateDoodle ? 'animate' : ''}`} />
 
       {/* Header / Navigation */}
-      <header>
+      <header className={showHeader ? 'visible' : ''}>
         <div className="container">
           <div className="logo-container">
             <div className="logo">
@@ -147,6 +201,11 @@ const StudentPortfolio = () => {
       </header>
 
       <main>
+        {/* Landing Section */}
+        <section id="landing">
+          <DoodleLandingSection onExploreClick={handleExploreClick} />
+        </section>
+      
         {/* About Section */}
         <section id="about">
           <FadeInSection>

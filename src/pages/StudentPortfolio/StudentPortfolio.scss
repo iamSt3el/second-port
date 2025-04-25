@@ -8,15 +8,25 @@
   background-image: $dot-pattern;
   position: relative;
   width: 100%;
+  overflow-x: hidden; // Prevent horizontal scrolling
 
   // Header and Navigation
   header {
-    position: sticky;
+    position: fixed; // Fixed position is crucial for the header to stay at the top
     top: 0;
-    z-index: 30;
+    left: 0;
+    right: 0;
+    z-index: 999; // Very high z-index to ensure it's always on top
     background-color: $white;
     border-bottom: 2px solid black;
     width: 100%;
+    transform: translateY(-100%); // Start offscreen
+    transition: transform 0.3s ease; // Faster animation
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    
+    &.visible {
+      transform: translateY(0); // Slide in when visible
+    }
 
     .container {
       max-width: $container-max-width;
@@ -116,7 +126,7 @@
               transform: translateY(0);
               transition: opacity 0.3s ease, transform 0.3s ease;
               
-              @for $i from 1 through 5 {
+              @for $i from 1 through 7 {
                 &:nth-child(#{$i}) {
                   transition-delay: 0.1s * $i;
                 }
@@ -141,7 +151,7 @@
       @media (max-width: $breakpoint-md - 1px) {
         display: flex;
         align-items: center;
-        //justify-content: center;
+        justify-content: center;
         width: 45px;
         height: 45px;
         background-color: $white;
@@ -208,12 +218,34 @@
     max-width: $container-max-width;
     margin: 0 auto;
     padding: $spacing-8 $spacing-4;
+    
+    // Add padding-top to account for fixed header when it appears
+    padding-top: calc(#{$spacing-8} + 80px);
 
     section {
       margin-bottom: $spacing-20;
+      // Ensure sections have adequate scroll padding for navigation
+      scroll-margin-top: 100px;
 
       &:last-child {
         margin-bottom: 0;
+      }
+      
+      // Only adding landing section specifics
+      &#landing {
+        margin-top: calc(-#{$spacing-8} - 80px); // Offset the main padding including header height
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: $spacing-8;
+        min-height: 100vh;
+        width: 100vw;
+        max-width: none;
+        margin-left: calc(-50vw + 50%); // Center full-width section
+        overflow: hidden;
+        // Ensure the landing section takes up the full viewport height
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
@@ -249,7 +281,7 @@
     }
   }
 
-  // Animated background doodles
+  // Animated background doodles - keeping original
   .animated-doodles {
     position: fixed;
     top: 0;
@@ -268,7 +300,7 @@
     }
   }
 
-  // About section
+  // About section - keeping original
   .about-section {
     display: grid;
     grid-template-columns: 1fr;
@@ -346,7 +378,7 @@
     }
   }
 
-  // Projects section
+  // Projects section - keeping original
   .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -361,7 +393,7 @@
     }
   }
 
-  // Achievements section
+  // Achievements section - keeping original
   .achievements-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -372,7 +404,7 @@
     }
   }
 
-  // Footer
+  // Footer - keeping original 
   footer {
     background-color: $white;
     border-top: 2px solid black;
@@ -398,10 +430,16 @@
     }
   }
 
-  // Social icons in about section
+  // Social icons in about section - keeping original
   .social-icons {
     display: flex;
     gap: $spacing-4;
     margin-bottom: $spacing-6;
   }
+}
+
+// Simple horizontal scroll fix for mobile
+// This only targets specific elements that were causing the issue
+.contact-section {
+  overflow-x: hidden;
 }
